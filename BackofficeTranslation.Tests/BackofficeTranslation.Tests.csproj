@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0088953F-7AD4-4F9F-9829-EAE540521F32}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Umbraco.BackofficeTranslation.Tests</RootNamespace>
+    <AssemblyName>Umbraco.BackofficeTranslation.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Controllers\FilesControllerTests.cs" />
+    <Compile Include="TestFactory.cs" />
+    <Compile Include="Common\Controllers\ComparisonControllerTests.cs" />
+    <Compile Include="Common\Controllers\TranslationControllerTests.cs" />
+    <Compile Include="Common\Core\EnglishNameProviderTests.cs" />
+    <Compile Include="Common\Core\TranslationSetComparisonTests.cs" />
+    <Compile Include="Common\Core\TranslationSetRepositoryTests.cs" />
+    <Compile Include="TestResources.cs" />
+    <Compile Include="Common\Core\TranslationFileRepositoryTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BackofficeTranslation.Common\BackofficeTranslation.Common.csproj">
+      <Project>{F5E4EECE-C29C-48A1-8BE9-C9F98E663CE0}</Project>
+      <Name>BackofficeTranslation.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BackofficeTranslation.Web\BackofficeTranslation.Web.csproj">
+      <Project>{435B36FC-AA70-43EF-8206-93CFAD1F7D83}</Project>
+      <Name>BackofficeTranslation.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TranslationFiles\da.xml" />
+    <Content Include="TranslationFiles\de.xml" />
+    <Content Include="TranslationFiles\en.xml" />
+    <Content Include="TranslationFiles\en_us.xml" />
+    <Content Include="TranslationFiles\es.xml" />
+    <Content Include="TranslationFiles\fr.xml" />
+    <Content Include="TranslationFiles\he.xml" />
+    <Content Include="TranslationFiles\it.xml" />
+    <Content Include="TranslationFiles\ja.xml" />
+    <Content Include="TranslationFiles\ko.xml" />
+    <Content Include="TranslationFiles\nl.xml" />
+    <Content Include="TranslationFiles\no.xml" />
+    <Content Include="TranslationFiles\pl.xml" />
+    <Content Include="TranslationFiles\pt.xml" />
+    <Content Include="TranslationFiles\ru.xml" />
+    <Content Include="TranslationFiles\sv.xml" />
+    <Content Include="TranslationFiles\zh.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

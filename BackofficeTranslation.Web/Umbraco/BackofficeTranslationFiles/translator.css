@@ -1,0 +1,118 @@
+﻿.fileList {
+	border-collapse: collapse;
+	padding: 0;
+}
+
+.fileList tbody tr {
+	cursor: pointer;
+}
+
+.fileList tbody tr:hover {
+	background-color: lightblue;
+}
+
+.fileList .nameCell {
+	width: 25%;
+}
+
+.fileList .languageCell {
+	width: 75%;
+}
+
+.icon {
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+}
+
+.different .icon {
+	background-image: url(../Images/true.png);
+}
+
+.equal .icon {
+	background-image: url(../Images/false.png);
+}
+
+.obsolete .icon {
+	background-image: url(../Images/protect.gif);
+}
+
+.new .icon {
+	background-image: url(../Images/newStar.gif);
+}
+
+#translationPanel li h2 {
+	padding-left: 30px !important;
+	padding-top: 5px !important;
+	padding-right: 5px !important;
+	padding-bottom: 5px !important;
+	font-size: 16px !important;
+}
+
+.differences {
+	position: absolute;
+	right: 10px;
+}
+
+#translationPanel table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid gray;
+}
+
+#translationPanel table tr {
+	vertical-align: top;
+}
+
+#translationPanel tbody tr:nth-child(odd) {
+	background-color: lightgray;
+}
+
+#translationPanel table th,
+#translationPanel table td {
+	padding: 3px;
+}
+
+#translationPanel .iconCell {
+	width: 5%;
+}
+
+#translationPanel .itemKey {
+	width: 15%;
+}
+
+#translationPanel .sourceValue {
+	width: 40%;
+}
+
+#translationPanel .targetValue {
+	width: 40%;
+}
+
+#translationPanel textarea {
+	width: 98%;
+	min-height: 22px !important;
+}
+
+#filesPanel {
+	overflow: hidden;
+}
+
+#existingFiles {
+	float: left;
+	width: 49%;
+}
+
+#newFiles {
+	float: right;
+	width: 49%;
+}
+
+#translations {
+	
+}
+
+#translations .toolbar {
+	text-align: right;
+	margin-bottom: 10px;
+}

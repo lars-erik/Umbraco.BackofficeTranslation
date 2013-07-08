@@ -1,0 +1,132 @@
+﻿@model dynamic
+
+@{
+	ViewBag.Title = "Translation files";
+}
+
+@section styles
+{
+	<link href="~/Umbraco/BackofficeTranslationFiles/translator.css" rel="stylesheet" />
+	@Styles.Render("~/Content/themes/base/css")
+}
+
+@section headScripts
+{
+	@Scripts.Render("~/Bundles/jqueryui")
+	<script src="~/Scripts/angular.min.js"></script>
+	<script src="~/Umbraco/BackofficeTranslationFiles/umbraco.backofficetranslator.js"></script>
+	<script type="text/javascript">
+		angular.module("umbraco.backofficetranslator")
+			.value("serviceRoot", "/api/")
+			.value("serviceSuffix", "");
+	</script>
+}
+
+<div id="translator" ng-app="umbraco.backofficetranslator" ng-controller="ApplicationController">
+	<ul>
+		<li><a href="#filesPanel">Files</a></li>
+		<li><a href="#translationPanel">Translation</a></li>
+		<li><a href="#helpPanel">Help</a></li>
+	</ul>
+
+	<div id="filesPanel" ng-controller="FilesController">
+		<p>
+			<label for="source">Master file</label>
+			<select name="source" id="source" ng-model="source" ng-options="file as file.EnglishName for file in files">
+			</select>
+		</p>
+		
+		<div id="existingFiles">
+			<h3>Work with existing files</h3>
+			<table class="fileList">
+				<thead>
+					<tr>
+						<th class="nameCell">Name</th>
+						<th class="languageCell">Language</th>
+					</tr>
+				</thead>
+				<tbody ng-repeat="file in files">
+					<tr ng-click="selected(file)">
+						<td class="nameCell">{{file.Name}}</td>
+						<td class="languageCell">{{file.EnglishName}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<div id="newFiles">
+			<h3>Add a new language</h3>
+			<select name="newFileCulture" ng-model="selectedNew" ng-options="file as file.EnglishName for file in potential">
+				<option value="">-- Select culture for new file --</option>
+			</select>
+			<button ng-click="createFile()" ng-disabled="noFileSelected()">Create new file</button>
+		</div>
+	</div>
+
+	<div id="translationPanel" ng-controller="TranslationController">
+		<p ng-show="loading" id="loader">
+			<img src="~/Umbraco/Images/throbber.gif" />
+			Please wait. Loading...
+		</p>
+		
+		<div ng-hide="loading" id="translations">
+			<div class="toolbar">
+				<button ng-click="deleteObsolete()">Delete all obsolete</button>
+			</div>
+			<ul ng-hide="loading">
+				<li ng-repeat="area in comparison.Areas">
+					<h2>
+						{{area.Key}}
+						<span class="differences">
+							<span ng-show="area.States.Different > 0">
+								<span class="different"><span class="icon"></span>{{area.States.Different}}</span>
+							</span>
+							<span ng-show="area.States.New > 0">
+								<span class="new"><span class="icon"></span>{{area.States.New}}</span>
+							</span>
+							<span ng-show="area.States.Equal > 0">
+								<span class="equal"><span class="icon"></span>{{area.States.Equal}}</span>
+							</span>
+							<span ng-show="area.States.Obsolete > 0">
+								<span class="obsolete"><span class="icon"></span>{{area.States.Obsolete}}</span>
+							</span>
+						</span>
+					</h2>
+					<div>
+					<table>
+						<thead>
+							<tr>
+								<th class="iconCell"></th>
+								<th class="itemKey">Key</th>
+								<th class="sourceValue">{{$parent.$parent.source.EnglishName}}</th>
+								<th class="targetValue">{{$parent.$parent.translation.EnglishName}}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in area.Items" ng-class="item.State">
+								<td class="iconCell"><span class="icon"></span></td>
+								<td class="itemKey">{{item.Key}}</td>
+								<td class="sourceValue">{{item.SourceValue}}</td>
+								<td class="targetValue">
+									<textarea ng-model="item.TargetValue" ng-blur="update(area, item)"></textarea>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div id="helpPanel">
+		<ol>
+			<li>Select or create a file under the files tab</li>
+			<li>When using a master file other than English, make sure the selected master is current.</li>
+			<li>Use the "delete all obsolete" button to make your file current.</li>
+			<li>Changes are saved as you work.</li>
+		</ol>
+	</div>
+
+</div>
+

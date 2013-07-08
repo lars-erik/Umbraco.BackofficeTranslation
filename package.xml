@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<umbPackage>
+  <files>
+    <file>
+      <guid>Umbraco.BackofficeTranslation.Common.dll</guid>
+      <orgPath>/bin</orgPath>
+      <orgName>Umbraco.BackofficeTranslation.Common.dll</orgName>
+    </file>
+    <file>
+      <guid>Umbraco.BackofficeTranslation.Plugin.dll</guid>
+      <orgPath>/bin</orgPath>
+      <orgName>Umbraco.BackofficeTranslation.Plugin.dll</orgName>
+    </file>
+    <file>
+      <guid>angular-bootstrap-prettify.js</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>angular-bootstrap-prettify.js</orgName>
+    </file>
+    <file>
+      <guid>angular-bootstrap-prettify.min.js</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>angular-bootstrap-prettify.min.js</orgName>
+    </file>
+    <file>
+      <guid>angular-bootstrap.js</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>angular-bootstrap.js</orgName>
+    </file>
+    <file>
+      <guid>angular-bootstrap.min.js</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>angular-bootstrap.min.js</orgName>
+    </file>
+    <file>
+      <guid>angular-cookies.js</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>angular-cookies.js</orgName>
+    </file>
+    <file>
+      <guid>angular-cookies.min.js</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>angular-cookies.min.js</orgName>
+    </file>
+    <file>
+      <guid>angular-loader.js</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>angular-loader.js</orgName>
+    </file>
+    <file>
+      <guid>angular-loader.min.js</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>angular-loader.min.js</orgName>
+    </file>
+    <file>
+      <guid>angular-mocks.js</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>angular-mocks.js</orgName>
+    </file>
+    <file>
+      <guid>angular-resource.js</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>angular-resource.js</orgName>
+    </file>
+    <file>
+      <guid>angular-resource.min.js</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>angular-resource.min.js</orgName>
+    </file>
+    <file>
+      <guid>angular-sanitize.js</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>angular-sanitize.js</orgName>
+    </file>
+    <file>
+      <guid>angular-sanitize.min.js</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>angular-sanitize.min.js</orgName>
+    </file>
+    <file>
+      <guid>angular-scenario.js</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>angular-scenario.js</orgName>
+    </file>
+    <file>
+      <guid>angular.js</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>angular.js</orgName>
+    </file>
+    <file>
+      <guid>angular.min.js</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>angular.min.js</orgName>
+    </file>
+    <file>
+      <guid>Translator.ascx</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>Translator.ascx</orgName>
+    </file>
+    <file>
+      <guid>translator.css</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>translator.css</orgName>
+    </file>
+    <file>
+      <guid>umbraco.backofficetranslator.js</guid>
+      <orgPath>/umbraco/BackofficeTranslationFiles</orgPath>
+      <orgName>umbraco.backofficetranslator.js</orgName>
+    </file>
+  </files>
+  <info>
+    <package>
+      <name>Backoffice Translation</name>
+      <version>1.0.4937.26953</version>
+      <license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
+      <url>http://www.markedspartner.no</url>
+      <requirements>
+        <major>6</major>
+        <minor>1</minor>
+        <patch>0</patch>
+      </requirements>
+    </package>
+    <author>
+      <name>Lars-Erik Aabech / MarkedsPartner AS</name>
+      <website>http://www.markedspartner.no</website>
+    </author>
+    <readme><![CDATA[UI for translation of backoffice language files.
+Adds a tab on the developer dashboard.
+
+Features
+- Edit existing language files, or create new ones
+- Highligting non-translated, new and obsolete entries
+- Remove obsolete entries with one click
+
+Users must have access to developer section, otherwise API will throw UnauthorizedAccessException.]]></readme>
+  </info>
+  <DocumentTypes />
+  <Templates />
+  <Stylesheets />
+  <Macros />
+  <DictionaryItems />
+  <Languages />
+  <DataTypes />
+  <Actions>
+    <Action runat="install" undo="true" alias="addDashboardSection" dashboardAlias="BackofficeTranslation">
+      <section>
+        <areas>
+          <area>developer</area>
+        </areas>
+        <tab caption="Backoffice Translation">
+          <control>/umbraco/BackofficeTranslationFiles/translator.ascx</control>
+        </tab>
+      </section>
+    </Action>
+  </Actions>
+</umbPackage>
