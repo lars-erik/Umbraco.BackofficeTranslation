@@ -19,13 +19,11 @@ namespace Umbraco.BackofficeTranslation.Plugin
 
 		public void PutTranslation(UpdateTranslationCommand cmd)
 		{
-			SecurityHelper.ThrowIfNotDeveloper(UmbracoContext);
 			controller.PutTranslation(cmd);
 		}
 
 		public void DeleteObsolete(string sourceName, string translationName)
 		{
-			SecurityHelper.ThrowIfNotDeveloper(UmbracoContext);
 			controller.DeleteObsolete(sourceName, translationName);
 		}
 	}

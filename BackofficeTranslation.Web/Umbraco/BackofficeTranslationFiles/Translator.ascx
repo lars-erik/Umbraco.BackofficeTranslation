@@ -136,6 +136,9 @@
 			<li>Changes are saved as you work.</li>
 		</ol>
 	</div>
+	
+	<div id="errorPanel">
+	</div>
 
 </div>
 

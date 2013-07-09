@@ -17,6 +17,7 @@ namespace Umbraco.BackofficeTranslation.Plugin
 
 		public ComparisonApiController()
 	    {
+			SecurityHelper.ThrowIfNotDeveloper(UmbracoContext);
 			controller = new ComparisonController();
 	    }
 
@@ -27,7 +28,6 @@ namespace Umbraco.BackofficeTranslation.Plugin
 
 		public HttpResponseMessage GetComparison(string sourceName, string translationName)
 		{
-			SecurityHelper.ThrowIfNotDeveloper(UmbracoContext);
 			return JsonResponse(((IComparisonController)this).GetComparison(sourceName, translationName));
 		}
 

@@ -6,36 +6,63 @@
 			return function (scope, element, attrs) {
 				var fn = $parse(attrs["ngBlur"]);
 				element.bind("blur", function (event) {
+					if (scope.$$phase) {
+						return;
+					}
 					scope.$apply(function () {
 						fn(scope, { $event: event });
 					});
 				});
 			};
 		})
-		.value("serviceUrls", {});
+		.value("serviceUrls", {}),
+	    exceptionInterceptor = function ($q, $window, $rootScope) {
+		    return function (promise) {
+			    promise.then(
+				    function () {
+				    },
+				    function (reason) {
+				    	$rootScope.errorPanel.dialog("option", "title", "Whoops: " + reason.data.ExceptionType);
+					    $rootScope.errorPanel.html(reason.data.ExceptionMessage);
+					    $rootScope.errorPanel.dialog("open");
+				    }
+			    );
+			    return promise;
+		    };
+	    },
+	    flexTextboxes = function () {
+		    $("#translationPanel textarea").off("keyup");
+		    $("#translationPanel textarea").each(function (i, tb) {
+			    var jtb = $(tb);
+			    jtb.height(jtb.prop("scrollHeight"));
+		    });
+		    $("#translationPanel textarea").on("keyup", function () {
+			    var jtb = $(this);
+			    jtb.height(jtb.prop("scrollHeight"));
+		    });
+	    },
+	    scrollToArea = function (evt, ui) {
+		    if (ui.newHeader.length === 0) {
+			    return;
+		    }
+		    flexTextboxes();
+		    $(document).scrollTop(ui.newHeader.offset().top);
+	    };
 
-	function flexTextboxes() {
-		$("#translationPanel textarea").off("keyup");
-		$("#translationPanel textarea").each(function (i, tb) {
-			var jtb = $(tb);
-			jtb.height(jtb.prop("scrollHeight"));
+	module.config(function ($httpProvider) {
+		$httpProvider.responseInterceptors.push(exceptionInterceptor);
+	});
+
+	module.controller("ApplicationController", ["$scope", "$rootScope", "$element", "serviceRoot", "serviceSuffix", "serviceUrls", function ($scope, $rootScope, $element, serviceRoot, serviceSuffix, serviceUrls) {
+		$($element).tabs({ disabled: [1] });
+		$rootScope.errorPanel = $("#errorPanel", $($element));
+		$rootScope.errorPanel.dialog({
+			autoOpen: false,
+			minWidth: 600,
+			minHeight: 300,
+			modal: true
 		});
-		$("#translationPanel textarea").on("keyup", function () {
-			var jtb = $(this);
-			jtb.height(jtb.prop("scrollHeight"));
-		});
-	}
 
-	function scrollToArea(evt, ui) {
-		if (ui.newHeader.length === 0) {
-			return;
-		}
-		flexTextboxes();
-		$(document).scrollTop(ui.newHeader.offset().top);
-	}
-
-	module.controller("ApplicationController", ["$scope", "$element", "serviceRoot", "serviceSuffix", "serviceUrls", function ($scope, $element, serviceRoot, serviceSuffix, serviceUrls) {
-		$($element).tabs({disabled: [1]});
 		$.extend(serviceUrls, {
 			getAllFiles: serviceRoot + "files" + serviceSuffix + "/GetAllFiles",
 			getPotentialFiles: serviceRoot + "files" + serviceSuffix + "/GetPotentialFiles",

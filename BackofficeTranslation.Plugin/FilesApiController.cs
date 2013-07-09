@@ -15,24 +15,22 @@ namespace Umbraco.BackofficeTranslation.Plugin
 
 		public FilesApiController()
 		{
+			SecurityHelper.ThrowIfNotDeveloper(UmbracoContext);
 			controller = new FilesController();
 		}
 
 		public IEnumerable<TranslationFile> GetAllFiles()
 		{
-			SecurityHelper.ThrowIfNotDeveloper(UmbracoContext);
 			return controller.GetAllFiles();
 		}
 
 		public void Create(string fileName)
 		{
-			SecurityHelper.ThrowIfNotDeveloper(UmbracoContext);
 			controller.Create(fileName);
 		}
 
 		public IEnumerable<TranslationFile> GetPotentialFiles()
 		{
-			SecurityHelper.ThrowIfNotDeveloper(UmbracoContext);
 			return controller.GetPotentialFiles();
 		}
 	}
