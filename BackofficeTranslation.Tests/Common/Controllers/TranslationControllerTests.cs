@@ -25,6 +25,28 @@ namespace Umbraco.BackofficeTranslation.Tests.Common.Controllers
 		}
 
 		[Test]
+		public void PutTranslation_WhenAreaIsNew_CreatesBothAreaAndItem()
+		{
+			var cmd = new UpdateTranslationCommand
+			{
+				File = "test",
+				Area = "area",
+				Item = "item",
+				NewValue = "new value"
+			};
+
+			var set = new TranslationSet(new TranslationFile("test", "Test"), CultureInfo.InvariantCulture);
+			setRepository.Save(set);
+
+			controller.PutTranslation(cmd);
+
+			var loadedSet = setRepository.Get("test");
+			Assert.AreEqual(1, loadedSet.Areas.Count);
+			Assert.AreEqual(1, loadedSet.Areas[0].Items.Count);
+			Assert.AreEqual("new value", loadedSet.Areas[0].Items[0].Value);
+		}
+
+		[Test]
 		public void PutTranslation_ChangesTranslationItemAndSaves()
 		{
 			var cmd = new UpdateTranslationCommand

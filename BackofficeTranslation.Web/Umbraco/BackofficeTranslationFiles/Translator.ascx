@@ -18,8 +18,8 @@
 </script>
 
 <umb:JsInclude runat="server" FilePath="~/Umbraco/BackofficeTranslationFiles/angular.min.js" />
-<umb:JsInclude runat="server" FilePath="~/Umbraco/BackofficeTranslationFiles/umbraco.backofficetranslator.js" />
-<umb:CssInclude runat="server" FilePath="~/Umbraco/BackofficeTranslationFiles/translator.css" />
+<umb:JsInclude runat="server" FilePath="~/Umbraco/BackofficeTranslationFiles/umbraco.backofficetranslator.js?v1" />
+<umb:CssInclude runat="server" FilePath="~/Umbraco/BackofficeTranslationFiles/translator.css?v1" />
 <umb:CssInclude runat="server" FilePath="propertypane/style.css" PathNameAlias="UmbracoClient" />
 <umb:CssInclude runat="server" FilePath="ui/ui-lightness/jquery-ui.custom.css" PathNameAlias="UmbracoClient" />
 
@@ -46,7 +46,7 @@
 		</p>
 		
 		<div id="existingFiles">
-			<h3>Work with existing files</h3>
+			<h3>Select an existing file</h3>
 			<table class="fileList">
 				<thead>
 					<tr>
@@ -64,11 +64,11 @@
 		</div>
 		
 		<div id="newFiles">
-			<h3>Add a new language</h3>
+			<h3>... or add a new language</h3>
 			<select name="newFileCulture" ng-model="selectedNew" ng-options="file as file.EnglishName for file in potential">
 				<option value="">-- Select culture for new file --</option>
 			</select>
-			<input type="button" ng-click="createFile()" ng-disabled="noFileSelected()" value="Create new file" />
+			<input type="button" ng-click="createFile()" ng-disabled="noFileSelected()" value="Create new file"/>
 		</div>
 	</div>
 
@@ -80,6 +80,14 @@
 		
 		<div ng-hide="loading" id="translations">
 			<div class="toolbar">
+				<span class="legend">
+					<label>Legend:</label>
+					<span class="different"><span class="icon"></span><label> Different (Probably translated)</label></span>
+					<span class="equal"><span class="icon"></span><label> Equal (Probably not translated)</label></span>
+					<span class="new"><span class="icon"></span><label> New</label></span>
+					<span class="obsolete"><span class="icon"></span><label> Obsolete</label></span>
+				</span>
+
 				<input type="button" ng-click="deleteObsolete()" value="Delete all obsolete" />
 			</div>
 			<ul ng-hide="loading">

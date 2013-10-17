@@ -37,7 +37,7 @@
 		</p>
 		
 		<div id="existingFiles">
-			<h3>Work with existing files</h3>
+			<h3>Select an existing file</h3>
 			<table class="fileList">
 				<thead>
 					<tr>
@@ -55,7 +55,7 @@
 		</div>
 		
 		<div id="newFiles">
-			<h3>Add a new language</h3>
+			<h3>... or add a new language</h3>
 			<select name="newFileCulture" ng-model="selectedNew" ng-options="file as file.EnglishName for file in potential">
 				<option value="">-- Select culture for new file --</option>
 			</select>
@@ -71,6 +71,14 @@
 		
 		<div ng-hide="loading" id="translations">
 			<div class="toolbar">
+				<span class="legend">
+					<label>Legend:</label>
+					<span class="different"><span class="icon"></span><label> Different (Probably translated)</label></span>
+					<span class="equal"><span class="icon"></span><label> Equal (Probably not translated)</label></span>
+					<span class="new"><span class="icon"></span><label> New</label></span>
+					<span class="obsolete"><span class="icon"></span><label> Obsolete</label></span>
+				</span>
+
 				<button ng-click="deleteObsolete()">Delete all obsolete</button>
 			</div>
 			<ul ng-hide="loading">
@@ -79,16 +87,16 @@
 						{{area.Key}}
 						<span class="differences">
 							<span ng-show="area.States.Different > 0">
-								<span class="different"><span class="icon"></span>{{area.States.Different}}</span>
+								<span class="different"><span class="icon"></span> {{area.States.Different}}</span>
 							</span>
 							<span ng-show="area.States.New > 0">
-								<span class="new"><span class="icon"></span>{{area.States.New}}</span>
+								<span class="new"><span class="icon"></span> {{area.States.New}}</span>
 							</span>
 							<span ng-show="area.States.Equal > 0">
-								<span class="equal"><span class="icon"></span>{{area.States.Equal}}</span>
+								<span class="equal"><span class="icon"></span> {{area.States.Equal}}</span>
 							</span>
 							<span ng-show="area.States.Obsolete > 0">
-								<span class="obsolete"><span class="icon"></span>{{area.States.Obsolete}}</span>
+								<span class="obsolete"><span class="icon"></span> {{area.States.Obsolete}}</span>
 							</span>
 						</span>
 					</h2>

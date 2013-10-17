@@ -103,7 +103,7 @@
 			if ($scope.noFileSelected()) {
 				return;
 			}
-			$http.post(serviceUrls.createFile + "?fileName=" + $scope.selectedNew.Name).success(function () {
+			$http.post(serviceUrls.createFile + "?cultureName=" + $scope.selectedNew.Name).success(function () {
 				loadFiles();
 				$scope.$emit("ListFileSelected", $scope.source, $scope.selectedNew);
 			});

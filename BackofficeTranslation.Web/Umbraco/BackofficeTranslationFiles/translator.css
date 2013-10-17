@@ -99,12 +99,10 @@
 }
 
 #existingFiles {
-	float: left;
 	width: 49%;
 }
 
 #newFiles {
-	float: right;
 	width: 49%;
 }
 
@@ -113,8 +111,12 @@
 }
 
 #translations .toolbar {
-	text-align: right;
+	height: 22px;
 	margin-bottom: 10px;
+}
+
+#translations .toolbar button {
+	float: right;
 }
 
 #errorPanel {

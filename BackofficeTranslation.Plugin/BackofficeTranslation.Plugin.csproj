@@ -11,10 +11,14 @@
     <AssemblyName>Umbraco.BackofficeTranslation.Plugin</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
@@ -198,6 +202,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientDependencyBumperPackageAction.cs" />
     <Compile Include="PluginRegistrationHandler.cs" />
     <Compile Include="ComparisonApiController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

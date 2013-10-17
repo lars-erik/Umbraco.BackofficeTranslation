@@ -12,7 +12,7 @@ namespace Umbraco.BackofficeTranslation.Common.Controllers
 	public interface IFilesController
 	{
 		IEnumerable<TranslationFile> GetAllFiles();
-		void Create(string fileName);
+		void Create(string cultureName);
 		IEnumerable<TranslationFile> GetPotentialFiles();
 	}
 
@@ -32,13 +32,13 @@ namespace Umbraco.BackofficeTranslation.Common.Controllers
 			return repository.GetAll().OrderBy(f => f.EnglishName);
 		}
 
-		public void Create(string fileName)
+		public void Create(string cultureName)
 		{
-			if (repository.GetAll().Any(f => f.Name == fileName))
-				throw new FileAlreadyExistsException(fileName);
+			if (repository.GetAll().Any(f => f.Name == cultureName))
+				throw new FileAlreadyExistsException(cultureName);
 
-			var culture = CultureInfo.GetCultureInfo(CultureName(fileName));
-			var file = new TranslationFile(fileName, culture.EnglishName);
+			var culture = CultureInfo.GetCultureInfo(CultureName(cultureName));
+			var file = new TranslationFile(cultureName, culture.EnglishName);
 			var set = new TranslationSet(file, culture);
 			setRepository.Save(set);
 		}

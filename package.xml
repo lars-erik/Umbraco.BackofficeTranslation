@@ -151,5 +151,6 @@ Users must have access to developer section, otherwise API will throw Unauthoriz
         </tab>
       </section>
     </Action>
+	<Action runat="install" undo="false" alias="ClientDependencyBump"/>
   </Actions>
 </umbPackage>

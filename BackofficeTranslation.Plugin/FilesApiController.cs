@@ -24,9 +24,9 @@ namespace Umbraco.BackofficeTranslation.Plugin
 			return controller.GetAllFiles();
 		}
 
-		public void Create(string fileName)
+		public void Create(string cultureName)
 		{
-			controller.Create(fileName);
+			controller.Create(cultureName);
 		}
 
 		public IEnumerable<TranslationFile> GetPotentialFiles()

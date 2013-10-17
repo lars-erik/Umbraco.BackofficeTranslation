@@ -26,6 +26,11 @@ namespace Umbraco.BackofficeTranslation.Common.Controllers
 		{
 			var set = setRepository.Get(cmd.File);
 			var area = set.FindArea(cmd.Area);
+			if (area == null)
+			{
+				area = new Area(cmd.Area);
+				set.Areas.Add(area);
+			}
 			var item = area.FindItem(cmd.Item);
 			if (item == null)
 			{
